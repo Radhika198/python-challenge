@@ -3,7 +3,7 @@ import os
 import csv 
 
 #Path to collect data from the Resources folder
-csvpath=os.path.join('.\\Resources\budget_data.csv').replace("\\","/")
+csvpath=os.path.join("Resources","budget_data.csv")
 
 # Open and read csv
 with open(csvpath, newline='') as csvfile:
