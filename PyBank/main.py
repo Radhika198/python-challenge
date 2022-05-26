@@ -1,5 +1,6 @@
 import os
-import csv 
+import csv
+import sys 
 
 #Path to collect data from the Resources folder
 csvpath=os.path.join('Resources','budget_data.csv')
@@ -51,7 +52,7 @@ with open(csvpath, newline='') as csvfile:
     j = profit_loss_change.index(greatest_loss_decrease)
     month_of_decrease = months[j+1]
 
-#Print Outcome of Financial Analysis
+results=sys.stdout
 print(f'Financial Analysis'+'\n')
 print(f'----------------------------'+'\n')
 print("Total months: " + str(len(months)))
@@ -60,12 +61,26 @@ print(f'Average Change: ${Avg_change:.2f}')
 print(f"Greatest Increase in Profits: {month_of_increase} (${greatest_profit_increase})")
 print(f"Greatest Decrease in Profits: {month_of_decrease} (${greatest_loss_decrease})")
 
-#Exporting the Financial analysis result into text file
 with open('Analysis/financial_analysis.txt', 'w') as text:
-    text.write(f'Financial Analysis'+'\n')
-    text.write(f'----------------------------'+'\n')
-    text.write("Total months: " + str(len(months))+'\n')
-    text.write("Total: $" + str(total_profit_and_loss)+'\n') 
-    text.write(f'Average Change: ${Avg_change:.2f}'+'\n')
-    text.write(f"Greatest Increase in Profits: {month_of_increase} (${greatest_profit_increase})"+'\n')
-    text.write(f"Greatest Decrease in Profits: {month_of_decrease} (${greatest_loss_decrease})")
+    sys.stdout=text
+
+#Print Outcome of Financial Analysis
+    print(f'Financial Analysis'+'\n')
+    print(f'----------------------------'+'\n')
+    print("Total months: " + str(len(months)))
+    print("Total: $" + str(total_profit_and_loss)) 
+    print(f'Average Change: ${Avg_change:.2f}')
+    print(f"Greatest Increase in Profits: {month_of_increase} (${greatest_profit_increase})")
+    print(f"Greatest Decrease in Profits: {month_of_decrease} (${greatest_loss_decrease})")
+
+   
+#Exporting the Financial analysis result into text file
+    sys.stdout=results
+#with open('Analysis/financial_analysis.txt', 'w') as text:
+    #text.write(f'Financial Analysis'+'\n')
+    #text.write(f'----------------------------'+'\n')
+    #text.write("Total months: " + str(len(months))+'\n')
+    #text.write("Total: $" + str(total_profit_and_loss)+'\n') 
+    #text.write(f'Average Change: ${Avg_change:.2f}'+'\n')
+    #text.write(f"Greatest Increase in Profits: {month_of_increase} (${greatest_profit_increase})"+'\n')
+    #text.write(f"Greatest Decrease in Profits: {month_of_decrease} (${greatest_loss_decrease})")
