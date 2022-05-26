@@ -26,10 +26,10 @@ with open(csv_path, newline='') as csvfile:
         county.append(row[1])
         candidates.append(row[2])
 
-    #Number of Votes
+    #Total Number of Votes cast
     tot_votes = (len(votes))
 
-    #Votes for each Candidate
+    #Complete list of candidates who received votes and total number of votes each candidate won
     for cand in candidates:
         if cand == "Khan":
             khan.append(candidates)
@@ -44,13 +44,13 @@ with open(csv_path, newline='') as csvfile:
             otooley.append(candidates)
             otooley_votes = len(otooley)  
     
-    #Each Candidate Percentage of votes on total votes
+    #Calculating the percentage of votes each candidate won
     khan_percent = round(((khan_votes / tot_votes) * 100),2)
     correy_percent = round(((correy_votes / tot_votes) * 100), 2)
     li_percent = round(((li_votes / tot_votes) * 100), 2)
     otooley_percent = round(((otooley_votes / tot_votes) * 100), 2)
        
-    #Winner 
+    #Determine the winner of the election based on popular vote. 
     if khan_percent > max(correy_percent, li_percent, otooley_percent):
         winner = "Khan"
     elif correy_percent > max(khan_percent, li_percent, otooley_percent):
@@ -60,8 +60,7 @@ with open(csv_path, newline='') as csvfile:
     else:
         winner = "O'Tooley"
     
-        #Print Statements
-
+#Output Election Results into terminal      
 print(f'Election Results'+'\n')
 print(f'----------------------------'+'\n')
 print(f'Total Votes: {tot_votes}' + '\n')
@@ -73,3 +72,17 @@ print(f"O'Tooley: {otooley_percent:.3f}% ({otooley_votes})" + '\n')
 print(f'-----------------------------------'+ '\n')
 print(f'Winner: {winner:}' + '\n')
 print(f'-----------------------------------')
+
+#Exporting the Election Resuts into text file  
+with open('Analysis/election_results.txt', 'w') as results:
+    results.write(f'Election Results'+'\n')
+    results.write(f'----------------------------'+'\n')
+    results.write(f'Total Votes: {tot_votes}' + '\n')
+    results.write(f'-----------------------------------'+'\n')
+    results.write(f'Khan: {khan_percent:.3f}% ({khan_votes})' + '\n')
+    results.write(f'Correy: {correy_percent:.3f}% ({correy_votes})' + '\n')
+    results.write(f'Li: {li_percent:.3f}% ({li_votes})' + '\n')
+    results.write(f"O'Tooley: {otooley_percent:.3f}% ({otooley_votes})" + '\n')
+    results.write(f'-----------------------------------'+ '\n')
+    results.write(f'Winner: {winner:}' + '\n')
+    results.write(f'-----------------------------------')
