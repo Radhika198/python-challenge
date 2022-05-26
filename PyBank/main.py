@@ -61,11 +61,11 @@ print(f"Greatest Increase in Profits: {month_of_increase} (${greatest_profit_inc
 print(f"Greatest Decrease in Profits: {month_of_decrease} (${greatest_loss_decrease})")
 
 #Exporting the Financial analysis result into text file
-with open('Analysis', 'financial_analysis.txt', 'w') as text:
+with open('Analysis/financial_analysis.txt', 'w') as text:
     text.write(f'Financial Analysis'+'\n')
     text.write(f'----------------------------'+'\n')
-    #text.write("Total months: " + str(len(months)))
-    #text.write("Total: $" + str(total_profit_and_loss)) 
+    text.write("Total months: " + str(len(months)))
+    text.write("Total: $" + str(total_profit_and_loss)) 
     text.write(f'Average Change: ${Avg_change:.2f}')
     text.write(f"Greatest Increase in Profits: {month_of_increase} (${greatest_profit_increase})")
     text.write(f"Greatest Decrease in Profits: {month_of_decrease} (${greatest_loss_decrease})")
